@@ -1,10 +1,26 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'java-library'
+    id 'maven-publish'
 }
 
+version = '1.3.5'
 
 repositories {
     mavenCentral()
+
+}
+
+publishing {
+    publications {
+        maven(MavenPublication) {
+            groupId = 'com.metlushko'
+            artifactId = 'utils'
+            version = project.version
+            from components.java
+        }
+    }
 }
 
 dependencies {
@@ -12,6 +28,22 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
 }
 
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.metlushko.HelloWorld',
+                'artifactId': 'utils',
+                'version': project.version
+    }
+
+}
+
 test {
     useJUnitPlatform()
 }
+
+tasks.named('build') {
+    finalizedBy 'publishMavenPublicationToMavenLocal'
+}
+
+test.finalizedBy jacocoTestReport
+jacocoTestReport.dependsOn test
