@@ -1,4 +1,4 @@
-package util;
+package com.metlushko.util;
 
 public class StringUtils {
     public static boolean isPositiveNumber(String str) {

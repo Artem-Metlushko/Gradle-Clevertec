@@ -1,3 +1,5 @@
+package com.metlushko;
+
 import com.metlushko.util.StringUtils;
 
 public class HelloWorld {

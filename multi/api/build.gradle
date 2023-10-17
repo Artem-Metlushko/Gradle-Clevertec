@@ -1,17 +1,26 @@
 plugins {
-    id 'java'
+    id 'java-library'
 }
-
 
 repositories {
     mavenCentral()
+    mavenLocal()
 }
 
 dependencies {
+    api project(':multi:core')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'com.metlushko.App'
+    }
 }
 
 test {
     useJUnitPlatform()
 }
+
+
