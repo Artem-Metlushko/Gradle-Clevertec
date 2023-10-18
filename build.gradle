@@ -23,25 +23,11 @@ test {
 }
 
 task copyUtilJar(type: Copy) {
+    dependsOn(":util:build")
     from("$projectDir/util/build/libs/util-1.3.5.jar")
     into("$projectDir/multi/core/build/Dinlibs")
 }
 
-//
-//task copyApiJar(type: Copy) {
-//    from("$projectDir/multi/api/build/libs/api.jar")
-//    into("$projectDir/build/libs")
-//}
-//
-//task copyCoreJar(type: Copy) {
-//    from("multi/core/build/libs/core.jar")
-//    into("/build/libs")
-//}
-
-//task buildAll(dependsOn: [':util:build', ':multi:api:build', ':multi:core:build']) {
-//
-//
-//}
-//test.finalizedBy jacocoTestReport
-//jacocoTestReport.dependsOn test
+test.finalizedBy jacocoTestReport
+jacocoTestReport.dependsOn test
 
