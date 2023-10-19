@@ -1,8 +1,5 @@
 plugins {
     id 'java'
-    id 'jacoco'
-    id 'java-gradle-plugin'
-    id 'maven-publish'
     id 'myplugin'
 }
 
@@ -18,7 +15,6 @@ java {
 dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.9.2'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
-
 }
 
 test {
@@ -30,20 +26,4 @@ task copyUtilJar(type: Copy) {
     from("$projectDir/util/build/libs/util-1.3.5.jar")
     into("$projectDir/multi/core/build/Dinlibs")
 }
-
-publishing {
-    publications {
-        mavenJava(MavenPublication) {
-            from components.java
-        }
-    }
-    repositories {
-        maven {
-            url = "${rootProject}/repo"
-        }
-    }
-}
-
-test.finalizedBy jacocoTestReport
-jacocoTestReport.dependsOn test
 
