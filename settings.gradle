@@ -1,4 +1,14 @@
+/*
+pluginManagement {
+    repositories {
+        mavenLocal()
+        gradlePluginPortal()
+    }
+}
+*/
+
 rootProject.name = 'Gradle-Clevertec'
+
 include ':multi:core'
 include ':multi:api'
 include 'util'

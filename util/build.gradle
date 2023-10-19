@@ -1,6 +1,5 @@
 plugins {
     id 'java'
-    id 'jacoco'
     id 'java-library'
 }
 
@@ -29,13 +28,7 @@ test {
     useJUnitPlatform()
 }
 
-
-
-
 task copyUtilJar(type: Copy) {
     from("$projectDir/util/build/libs/util-1.3.5.jar")
     into("$projectDir/multi/core/build/Dinlibs")
 }
-
-test.finalizedBy jacocoTestReport
-jacocoTestReport.dependsOn test
